@@ -3,7 +3,7 @@ import feedparser
 import time
 import os
 
-f = open("nvnb-ipa.txt", "r")
+f = open("nvnb-ipa.txt", "r", encoding="utf-8")
 old_up = f.read()
 f.close()
 
@@ -27,7 +27,7 @@ for i in range(feed_size):
     now_up = entries[i]["updated"]
     if now_up == old_up:
         new_up = entries[0]["updated"]
-        g = open("nvnb-ipa.txt", "w")
+        g = open("nvnb-ipa.txt", "w", encoding="utf-8")
         g.write(new_up)
         g.close
         break
@@ -65,6 +65,6 @@ for i in range(feed_size):
     i = i+1
     
 new_up = entries[0]["updated"]
-g = open("nvnb-ipa.txt", "w")
+g = open("nvnb-ipa.txt", "w", encoding="utf-8")
 g.write(new_up)
 g.close
