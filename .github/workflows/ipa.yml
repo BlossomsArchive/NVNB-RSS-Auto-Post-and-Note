@@ -29,7 +29,7 @@ jobs:
 
 
         run: |
-          python feed-post-and-list.py
+          python nvnb-ipa.py
           cat nvnb-ipa.txt
 
       - name: Update File
