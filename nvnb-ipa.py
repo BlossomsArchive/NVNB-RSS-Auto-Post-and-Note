@@ -13,7 +13,7 @@ feed_size = len(entries)
 
 for i in range(feed_size):
     now_up = entries[i]["updated"]
-    if now_entrie == old_up:
+    if now_up == old_up:
         new_up = entries[0]["updated"]
         g = open("nvnb-ipa.txt", "w")
         g.write(new_up)
