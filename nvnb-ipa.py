@@ -63,8 +63,8 @@ while (True):
             api.token = misskey_token
             #api.notes_create(text=post_text)
             print(post_text+"\n")
-            time.sleep(10)
         except:
             pass
+        time.sleep(10)
 
     i += 1
