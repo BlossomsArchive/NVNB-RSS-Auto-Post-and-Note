@@ -39,17 +39,17 @@ try:
             
             post_text ="【IPA】\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
             print(post_text+"\n")
-                try:
-                    #SNS投稿API
-                    # Misskey
-                    misskey_address = os.environ.get("MISSKEY_SERVER_ADDRESS")
-                    misskey_token = os.environ.get("MISSKEY_TOKEN")
-                    api = Misskey(misskey_address)
-                    api.token = misskey_token
-                    #api.notes_create(text=post_text)
-                    time.sleep(10)
-                except:
-                    pass
+            try:
+                #SNS投稿API
+                # Misskey
+                misskey_address = os.environ.get("MISSKEY_SERVER_ADDRESS")
+                misskey_token = os.environ.get("MISSKEY_TOKEN")
+                api = Misskey(misskey_address)
+                api.token = misskey_token
+                #api.notes_create(text=post_text)
+                time.sleep(10)
+            except:
+                pass
         i = i+1
 except:
     new_up = entries[0]["updated"]
