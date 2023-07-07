@@ -23,7 +23,6 @@ jobs:
         env:
           MISSKEY_SERVER_ADDRESS: ${{ secrets.MISSKEY_SERVER_ADDRESS }}
           MISSKEY_TOKEN: ${{ secrets.MISSKEY_TOKEN }}
-          WORDPRESS_ADDRESS: ${{ secrets.WORDPRESS_ADDRESS }}
           WORDPRESS_USER: ${{ secrets.WORDPRESS_USER }}
           WORDPRESS_API_PASSWORD: ${{ secrets.WORDPRESS_API_PASSWORD }}
 
