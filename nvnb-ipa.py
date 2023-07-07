@@ -52,6 +52,7 @@ while (True):
         #response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
         
         post_text ="【IPA】\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
+        print(post_text+"\n")
         try:
             #SNS投稿API
             # Misskey
@@ -60,7 +61,6 @@ while (True):
             api = Misskey(misskey_address)
             api.token = misskey_token
             #api.notes_create(text=post_text)
-            print(post_text+"\n")
             time.sleep(10)
         except:
             pass
