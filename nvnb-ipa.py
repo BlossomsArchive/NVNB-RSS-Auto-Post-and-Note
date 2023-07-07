@@ -7,7 +7,7 @@ import time
 
 # ブログのURL
 wordpress_address = os.environ.get("WORDPRESS_ADDRESS")
-blog_url = 'https://nvnb.blossomsarchive.com'
+blog_url = wordpress_address
 
 # WordPressのユーザー名
 wordpress_user = os.environ.get("WORDPRESS_USER")
