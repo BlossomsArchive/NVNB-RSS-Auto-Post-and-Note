@@ -27,7 +27,7 @@ try:
             
             post_text ="【IPA】\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
             print(post_text+"\n")
-        print(entries[i]["updated"])
+        print(i)
         i = i+1
 except:
     g = open("nvnb-ipa.txt", "w")
