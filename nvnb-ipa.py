@@ -11,9 +11,8 @@ try:
     i = 0
 
     feed_size = len(entries)
-    print(feed_size)
     
-    while (True):
+    for i in range(feed_size):
         now_entrie = entries[i]["updated"]
         if now_entrie == old_up:
             new_up = entries[0]["updated"]
