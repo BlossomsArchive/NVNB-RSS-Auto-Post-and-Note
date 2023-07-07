@@ -12,7 +12,7 @@ print(old_up)
 i = 0
 
 while (True):
-    now_entry = entries[i]['published']
+    now_entry = entries[i]
     if now_entry['date'] == old_up:
         new_up = entries[0]['date']
         g = open("nvnb-ipa.txt", "w")
