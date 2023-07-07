@@ -13,7 +13,7 @@ i = 0
 
 while (True):
     now_entry = entries[i]
-    if now_entry['date'] == old_up:
+    if entries[i]['date'] == old_up:
         new_up = entries[0]['date']
         g = open("nvnb-ipa.txt", "w")
         g.write(new_up)
