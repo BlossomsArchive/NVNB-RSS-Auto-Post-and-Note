@@ -11,6 +11,17 @@ i = 0
 
 feed_size = len(entries)
 
+# ブログのURL
+blog_url = "https://nvnb.blossomsarchive.com/"
+
+# WordPressのユーザー名
+wordpress_user = os.environ.get("WORDPRESS_USER")
+api_user = wordpress_user
+
+# アプリケーションパスワード
+wordpress_api_password = os.environ.get("WORDPRESS_API_PASSWORD")
+api_password = wordpress_api_password
+
 for i in range(feed_size):
     now_up = entries[i]["updated"]
     if now_up == old_up:
