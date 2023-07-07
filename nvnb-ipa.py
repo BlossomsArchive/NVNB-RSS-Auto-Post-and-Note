@@ -2,7 +2,7 @@
 import feedparser
 import time
 
-f = open("./nvnb-ipa.txt", "r")
+f = open("nvnb-ipa.txt", "r")
 old_up = f.read()
 f.close()
 
