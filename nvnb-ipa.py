@@ -1,6 +1,7 @@
 # coding: utf-8
 import feedparser
 import time
+import os
 
 f = open("nvnb-ipa.txt", "r")
 old_up = f.read()
