@@ -9,6 +9,10 @@ try:
     
     entries = feedparser.parse('https://www.ipa.go.jp/security/alert-rss.rdf')['entries']
     i = 0
+
+    feed_size = len(entries)
+    print(feed_size)
+    
     while (True):
         now_entrie = entries[i]["updated"]
         if now_entrie == old_up:
