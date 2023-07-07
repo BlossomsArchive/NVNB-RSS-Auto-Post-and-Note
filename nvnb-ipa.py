@@ -22,4 +22,5 @@ while (True):
         
         post_text ="【IPA】\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
         print(post_text+"\n")
-    i += 1
+    print(i)
+    i = i+1
