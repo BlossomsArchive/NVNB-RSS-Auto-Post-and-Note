@@ -2,14 +2,13 @@
 import feedparser
 import time
 
-f = open("nvnb-ipa.txt", "r")
-old_up = f.read()
-f.close()
-
-entries = feedparser.parse('https://www.ipa.go.jp/security/alert-rss.rdf')['entries']
-i = 0
-
 try:
+    f = open("nvnb-ipa.txt", "r")
+    old_up = f.read()
+    f.close()
+    
+    entries = feedparser.parse('https://www.ipa.go.jp/security/alert-rss.rdf')['entries']
+    i = 0
     while (True):
         if entries[i]["updated"] == old_up:
             new_up = entries[0]["updated"]
