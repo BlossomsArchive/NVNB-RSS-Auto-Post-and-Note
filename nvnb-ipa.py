@@ -1,32 +1,26 @@
-#!/usr/bin/env python3
 # coding: utf-8
-
-import feedparser
-import requests
-import os
 from misskey import Misskey
-
+import feedparser
+import os
+import requests
+import time
 
 # ブログのURL
-blog_url = ''
+wordpress_address = os.environ.get("WORDPRESS_ADDRESS")
+blog_url = 'https://nvnb.blossomsarchive.com'
 
 # WordPressのユーザー名
-api_user = ''
+wordpress_user = os.environ.get("WORDPRESS_USER")
+api_user = wordpress_user
 
 # アプリケーションパスワード
-api_password = ''
-
-local_path = ""
-old_up = ""
-if os.path.exists(local_path):
-    with open(local_path) as f:
-        old_up = f.read()
-        f.close
+wordpress_api_password = os.environ.get("WORDPRESS_API_PASSWORD")
+api_password = wordpress_api_password
+f = open("nvnb-ipa.txt", "r")
+old_up = f.read()
+f.close()
 
 entries = feedparser.parse('https://www.ipa.go.jp/security/alert-rss.rdf')['entries']
-
-api = Misskey('misskey.io')
-api.token = ''
 
 i = 0
 
@@ -34,9 +28,9 @@ while (True):
     now_entry = entries[i]
     if now_entry['date'] == old_up:
         new_up = entries[0]['date']
-        with open(local_path, mode='w') as f:
-            f.write(new_up)
-            f.close
+        g = open("nvnb-ipa.txt", "w")
+        g.write(new_up)
+        g.close
         break
 
     else:
@@ -47,18 +41,29 @@ while (True):
         post_data = {
             'title': "[IPA] "+title,
             'content': "<p>IPAの記事リンク</p>"+"<a href= \""+page_url+"\">"+page_url+"</a>",
-            'categories': '0',
+            'categories': '9',
             'status': 'publish',  # draft=下書き、publish=公開　省略時はdraftになる
-            'featured_media':000,
+            'featured_media':163,
         }
 
         # Post APIのURL
         post_api_url = f'{blog_url}/wp-json/wp/v2/posts'
 
         # 記事投稿リクエスト
-        response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
+        #response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
         
-        api.notes_create(text="[IPA]\n"+title+"\n"+page_url +"\n\nその他の情報はこちら\nnvnb.blossomsarchive.com")
+        post_text ="【IPA】\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
+        try:
+            #SNS投稿API
+            # Misskey
+            misskey_address = os.environ.get("MISSKEY_SERVER_ADDRESS")
+            misskey_token = os.environ.get("MISSKEY_TOKEN")
+            api = Misskey(misskey_address)
+            api.token = misskey_token
+            #api.notes_create(text=post_text)
+            print(post_text+"\n")
+            time.sleep(10)
+        except:
+            pass
 
-        l = 0
     i += 1
