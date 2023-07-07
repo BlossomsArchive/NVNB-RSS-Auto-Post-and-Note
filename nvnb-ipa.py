@@ -9,6 +9,9 @@ f.close()
 entries = feedparser.parse('https://www.ipa.go.jp/security/alert-rss.rdf')['entries']
 i = 0
 
+print(old_up)
+print(entries[0]["updated"])
+
 while (True):
     now_entry = entries[i]
     if now_entry["updated"] == old_up:
@@ -17,7 +20,6 @@ while (True):
         g.write(new_up)
         g.close
         break
-
     else:
         title = now_entry['title']
         page_url = now_entry['link']
