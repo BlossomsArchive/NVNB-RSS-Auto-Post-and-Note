@@ -10,7 +10,8 @@ try:
     entries = feedparser.parse('https://www.ipa.go.jp/security/alert-rss.rdf')['entries']
     i = 0
     while (True):
-        if entries[i]["updated"] == old_up:
+        now_entrie = entries[i]["updated"]
+        if now_entrie == old_up:
             new_up = entries[0]["updated"]
             g = open("nvnb-ipa.txt", "w")
             g.write(new_up)
