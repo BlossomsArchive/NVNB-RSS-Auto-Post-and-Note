@@ -7,7 +7,7 @@ old_up = f.read()
 f.close()
 
 entries = feedparser.parse('https://www.ipa.go.jp/security/alert-rss.rdf')['entries']
-print(entries[0])
+print(entries[0]["updated"])
 print(old_up)
 i = 0
 
