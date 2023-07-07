@@ -10,8 +10,8 @@ try:
     entries = feedparser.parse('https://www.ipa.go.jp/security/alert-rss.rdf')['entries']
     i = 0
 
-    print("old:"old_up)
-    print("new:":entries[0]["updated"])
+    print("old:"+old_up)
+    print("new:"+entries[0]["updated"])
     
     feed_size = len(entries)
     
