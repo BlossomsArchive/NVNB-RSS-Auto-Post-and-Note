@@ -61,4 +61,10 @@ for i in range(feed_size):
             time.sleep(10)
         except:
             pass
+
     i = i+1
+    
+new_up = entries[0]["updated"]
+g = open("nvnb-ipa.txt", "w")
+g.write(new_up)
+g.close
