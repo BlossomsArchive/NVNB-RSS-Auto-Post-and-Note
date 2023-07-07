@@ -22,16 +22,15 @@ f.close()
 
 entries = feedparser.parse('https://www.ipa.go.jp/security/alert-rss.rdf')['entries']
 
-new_up = entries[0]['date']
-g = open("nvnb-ipa.txt", "w")
-g.write(new_up)
-g.close
-
 i = 0
 
 while (True):
     now_entry = entries[i]
     if now_entry['date'] == old_up:
+        new_up = entries[0]['date']
+        g = open("nvnb-ipa.txt", "w")
+        g.write(new_up)
+        g.close
         break
 
     else:
