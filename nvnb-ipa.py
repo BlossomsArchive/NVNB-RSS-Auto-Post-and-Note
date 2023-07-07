@@ -11,7 +11,9 @@ try:
     i = 0
 
     print("old:"+old_up)
+    print("type"+type(old_up))
     print("new:"+entries[0]["updated"])
+    print("type"+type(entries[0]["updated"]))
     
     feed_size = len(entries)
     
