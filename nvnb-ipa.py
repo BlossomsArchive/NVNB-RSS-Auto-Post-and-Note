@@ -1,21 +1,8 @@
 # coding: utf-8
-from misskey import Misskey
 import feedparser
-import os
-import requests
 import time
 
-# ブログのURL
-blog_url = "https://nvnb.blossomsarchive.com/"
-
-# WordPressのユーザー名
-wordpress_user = os.environ.get("WORDPRESS_USER")
-api_user = wordpress_user
-
-# アプリケーションパスワード
-wordpress_api_password = os.environ.get("WORDPRESS_API_PASSWORD")
-api_password = wordpress_api_password
-f = open("nvnb-ipa.txt", "r")
+f = open("./nvnb-ipa.txt", "r")
 old_up = f.read()
 f.close()
 
@@ -35,33 +22,12 @@ while (True):
     else:
         title = now_entry['title']
         page_url = now_entry['link']
-
-        # 送信する記事データ
-        post_data = {
-            'title': "[IPA] "+title,
-            'content': "<p>IPAの記事リンク</p>"+"<a href= \""+page_url+"\">"+page_url+"</a>",
-            'categories': '9',
-            'status': 'publish',  # draft=下書き、publish=公開　省略時はdraftになる
-            'featured_media':163,
-        }
-
-        # Post APIのURL
-        post_api_url = f'{blog_url}/wp-json/wp/v2/posts'
-
-        # 記事投稿リクエスト
-        #response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
         
         post_text ="【IPA】\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
         print(post_text+"\n")
         try:
-            #SNS投稿API
-            # Misskey
-            misskey_address = os.environ.get("MISSKEY_SERVER_ADDRESS")
-            misskey_token = os.environ.get("MISSKEY_TOKEN")
-            api = Misskey(misskey_address)
-            api.token = misskey_token
-            #api.notes_create(text=post_text)
+
             time.sleep(10)
         except:
             pass
-        i += 1
+    i += 1
