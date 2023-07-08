@@ -23,7 +23,7 @@ f.close()
 print("old_up : "+old_up)
 
 entries = feedparser.parse('https://jvn.jp/rss/jvn.rdf')['entries']
-
+print("new_up : "+ entries[0]['date'])
 i = 0
 
 while (True):
