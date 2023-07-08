@@ -17,8 +17,7 @@ api_user = wordpress_user
 wordpress_api_password = os.environ.get("WORDPRESS_API_PASSWORD")
 api_password = wordpress_api_password
 f = open("nvnb-jvn.txt", "r")
-old_list = f.readlines()
-old_up = old_list[0]
+old_up = f.readline()
 f.close()
 
 entries = feedparser.parse('https://jvn.jp/rss/jvn.rdf')['entries']
