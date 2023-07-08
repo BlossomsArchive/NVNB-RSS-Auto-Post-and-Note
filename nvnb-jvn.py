@@ -17,7 +17,7 @@ while (True):
         new_up = entries[0]['date']
         g = open("nvnb-jvn.txt", "w")
         g.write(new_up)
-        g.close
+        g.close()
         break
 
     else:
