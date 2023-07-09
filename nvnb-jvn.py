@@ -21,11 +21,10 @@ f = open("nvnb-jvn.txt", "r")
 old_up = f.readline()
 f.close()
 
-print("old_up : "+old_up)
-
 entries = feedparser.parse('https://jvn.jp/rss/jvn.rdf')['entries']
-print("new_up : "+ entries[0]['date'])
 
+print("old_up : "+old_up)
+print("new_up : "+ entries[0]['date'])
 print(entries[0]['date'] == old_up)
 
 # i = 0
