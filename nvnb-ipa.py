@@ -29,7 +29,7 @@ for i in range(feed_size):
         new_up = entries[0]["updated"]
         g = open("nvnb-ipa.txt", "w", encoding="utf-8")
         g.write(new_up)
-        g.close
+        g.close()
         break
     else:
         title = entries[i]['title']
