@@ -4,7 +4,7 @@ import time
 import os
 
 f = open("nvnb-ipa.txt", "r", encoding="utf-8")
-old_up = f.read()
+old_up = f.readline().replace("\n", "")
 f.close()
 
 entries = feedparser.parse('https://www.ipa.go.jp/security/alert-rss.rdf')['entries']
