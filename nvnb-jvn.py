@@ -18,7 +18,7 @@ from misskey import Misskey
 # api_password = wordpress_api_password
 
 f = open("nvnb-jvn.txt", "r")
-old_up = f.readline()
+old_up = f.readline().replace("\n", "")
 f.close()
 
 entries = feedparser.parse('https://jvn.jp/rss/jvn.rdf')['entries']
