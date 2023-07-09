@@ -2,8 +2,8 @@ name: JVN
 
 on:
   workflow_dispatch:
-  #schedule:
-  #  - cron: '*/10 * * * *'
+  schedule:
+    - cron: '*/10 * * * *'
 jobs:
   Send_Note:
     runs-on: ubuntu-latest
