@@ -1,4 +1,4 @@
-name: IPA
+name: Every hour
 
 on:
   workflow_dispatch:
