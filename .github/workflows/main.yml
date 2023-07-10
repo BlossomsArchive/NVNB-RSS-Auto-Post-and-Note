@@ -103,8 +103,8 @@ jobs:
 
 
           run: |
-            python nvnb-jvn.py
-            cat nvnb-jvn.txt
+            python nvnb-jvn-ipedia.py
+            cat nvnb-jvn-ipedia.txt
 
         - name: Update File
           run: |
