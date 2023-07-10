@@ -1,7 +1,7 @@
 # 注意　これを定期実行するのは、全てが安定動作することを確認してから！
 # その時に他の個別の定期実行を切って手動実行のみにするのを忘れずに！
 
-name: Every hour
+name: Every hour ALL run
 
 on:
   workflow_dispatch:
