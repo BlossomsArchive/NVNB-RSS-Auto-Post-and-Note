@@ -1,0 +1,43 @@
+name: JPCERT/CC only
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 * * * *'
+jobs:
+  Send_Note:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Python Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install Misskey.py
+          pip install feedparser
+
+      - name: Create Note&WP Content
+        env:
+          MISSKEY_SERVER_ADDRESS: ${{ secrets.MISSKEY_SERVER_ADDRESS }}
+          MISSKEY_TOKEN: ${{ secrets.MISSKEY_TOKEN }}
+          WORDPRESS_USER: ${{ secrets.WORDPRESS_USER }}
+          WORDPRESS_API_PASSWORD: ${{ secrets.WORDPRESS_API_PASSWORD }}
+
+
+        run: |
+          python nvnb-ipa.py
+          cat nvnb-ipa.txt
+
+      - name: Update File
+        run: |
+          if ! git diff --exit-code --quiet
+          then
+           git add --update
+            git config --global user.name ${{ secrets.YOUSER_NAME }}
+            git config --global user.email ${{ secrets.MAIL_ADDRESS }}
+            git commit -m "Update Content"
+            git push
+          fi
