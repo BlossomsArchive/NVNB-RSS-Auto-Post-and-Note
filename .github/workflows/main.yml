@@ -79,7 +79,7 @@ jobs:
               git push
             fi
             
-  JVN iPedia:
+  JVN-iPedia:
       runs-on: ubuntu-latest
       needs: JVN
       steps:
