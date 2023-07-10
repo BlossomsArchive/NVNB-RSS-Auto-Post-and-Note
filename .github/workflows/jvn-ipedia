@@ -1,4 +1,4 @@
-name: JVN only
+name: JVN iPedia only
 
 on:
   workflow_dispatch:
