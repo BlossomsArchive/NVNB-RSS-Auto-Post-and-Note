@@ -1,4 +1,4 @@
-name: IPA
+name: IPA only
 
 on:
   workflow_dispatch:
