@@ -3,7 +3,7 @@ name: IPA
 on:
   workflow_dispatch:
   schedule:
-    - cron: ' * * * *'
+    - cron: '0 * * * *'
 jobs:
   Send_Note:
     runs-on: ubuntu-latest
