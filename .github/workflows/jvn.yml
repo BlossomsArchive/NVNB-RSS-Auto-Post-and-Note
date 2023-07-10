@@ -1,4 +1,4 @@
-name: JVN
+name: JVN only
 
 on:
   workflow_dispatch:
