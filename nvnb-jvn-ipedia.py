@@ -1,90 +1,141 @@
-#!/usr/bin/env python3
 # coding: utf-8
 
 import feedparser
 import requests
+import time
 import os
-from misskey import misskey
-
+from misskey import Misskey
 
 # ブログのURL
-blog_url = '(例:https://nvnb.blossomsarchive.com)'
+blog_url = "https://nvnb.blossomsarchive.com"
 
 # WordPressのユーザー名
-api_user = ''
+wordpress_user = os.environ.get("WORDPRESS_USER")
+api_user = wordpress_user
 
 # アプリケーションパスワード
-api_password = ''
+wordpress_api_password = os.environ.get("WORDPRESS_API_PASSWORD")
+api_password = wordpress_api_password
 
-# 前回チェック時の最新の投稿が入っているテキストファイルのパス
-local_path = ""
+f = open(
+    "nvnb-jvn-ipedia.txt", "r"
+)
+old_up = f.readline().replace("\n", "")
+f.close()
 
-if os.path.exists(local_path):
-    with open(local_path) as f:
-        old_up = f.read()
-        f.close
+entries = feedparser.parse("https://jvndb.jvn.jp/ja/rss/jvndb.rdf")["entries"]
 
-entries = feedparser.parse('https://jvndb.jvn.jp/ja/rss/jvndb.rdf')['entries']
+new_up = entries[0]["date"]
 
-api = misskey('misskey.io')
-#MisskeyのAPIトークン
-api.token = ''
-
-new_up = entries[0]['date']
-with open(local_path, mode='w') as f:
-    f.write(new_up)
-    f.close
+g = open(
+    "nvnb-jvn-ipedia.txt", "w"
+)
+g.write(new_up)
+g.close()
 
 i = 0
 
-while (True):
+while True:
     now_entry = entries[i]
-    if now_entry['date'] == old_up:
+    if now_entry["date"] == old_up:
         break
 
     else:
-        title = now_entry['title']
-        page_url = now_entry['link']
-        if now_entry['date'] != now_entry['issued']:
-            update_date_base = now_entry['date'][:-12]
-            update_date_split = update_date_base.split('-')
-            update_date = update_date_split[0]+"年"+update_date_split[1]+"月"+update_date_split[2]+"日"
-            post_text = "[JVN iPedia] ("+update_date+" 更新)"+title
+        title = now_entry["title"]
+        page_url = now_entry["link"]
+        if now_entry["date"] != now_entry["issued"]:
+            update_date_base = now_entry["date"][:-12]
+            update_date_split = update_date_base.split("-")
+            update_date = (
+                update_date_split[0]
+                + "年"
+                + update_date_split[1]
+                + "月"
+                + update_date_split[2]
+                + "日"
+            )
+            post_text = "[JVN iPedia] (" + update_date + " 更新)" + title
 
             # 送信する記事データ
             post_data = {
-                'title': post_text,
-                'content': "<p>JVN iPediaの記事リンク</p>"+"<a href= \""+page_url+"\">"+page_url+"</a>",
-                'categories': '0', #投稿カテゴリのid
-                'status': 'publish',  # draft=下書き、publish=公開　省略時はdraftになる
-                'featured_media':000, #サムネ画像のid
+                "title": post_text,
+                "content": "<p>JVN iPediaの記事リンク</p>"
+                + '<a href= "'
+                + page_url
+                + '">'
+                + page_url
+                + "</a>",
+                "categories": "8",
+                "status": "publish",  # draft=下書き、publish=公開　省略時はdraftになる
+                "featured_media": 514,
             }
 
             # Post APIのURL
-            post_api_url = f'{blog_url}/wp-json/wp/v2/posts'
+            post_api_url = f"{blog_url}/wp-json/wp/v2/posts"
 
             # 記事投稿リクエスト
-            response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
-            
-            api.notes_create(text="[JVN iPedia] ("+update_date+" 更新)\n"+title+"\n"+page_url +"\n\nその他の情報はこちら\nnvnb.blossomsarchive.com")
+            #response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
 
-            
+            post_text = (
+                "【JVN iPedia】\n"
+                + update_date
+                + title
+                + "\n"
+                + page_url
+                + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
+            )
+            print(post_text)
+            try:
+                # SNS投稿API
+                # Misskey
+                misskey_address = os.environ.get("MISSKEY_SERVER_ADDRESS")
+                misskey_token = os.environ.get("MISSKEY_TOKEN")
+                api = Misskey(misskey_address)
+                api.token = misskey_token
+                #api.notes_create(text=post_text)
+            except:
+                pass
+            time.sleep(10)
+
         else:
             # 送信する記事データ
             post_data = {
-                'title': "[JVN iPedia] "+title,
-                'content': "<p>JVN iPediaの記事リンク</p>"+"<a href= \""+page_url+"\">"+page_url+"</a>",
-                'categories': '0',
-                'status': 'publish',  # draft=下書き、publish=公開　省略時はdraftになる
-                'featured_media':000,
+                "title": "[JVN iPedia] " + title,
+                "content": "<p>JVN iPediaの記事リンク</p>"
+                + '<a href= "'
+                + page_url
+                + '">'
+                + page_url
+                + "</a>",
+                "categories": "8",
+                "status": "publish",  # draft=下書き、publish=公開　省略時はdraftになる
+                "featured_media": 514,
             }
-
+            post_text = (
+                "【JVN iPedia】\n"
+                + title
+                + "\n"
+                + page_url
+                + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
+            )
+            print(post_text)
             # Post APIのURL
-            post_api_url = f'{blog_url}/wp-json/wp/v2/posts'
+            post_api_url = f"{blog_url}/wp-json/wp/v2/posts"
 
             # 記事投稿リクエスト
-            response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
+            #response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
+            time.sleep(5)
 
-            api.notes_create(text="[JVN iPedia]\n"+title+"\n"+page_url +"\n\nその他の情報はこちら\nnvnb.blossomsarchive.com")
-        l = 0
+            try:
+                # SNS投稿API
+                # Misskey
+                misskey_address = os.environ.get("MISSKEY_SERVER_ADDRESS")
+                misskey_token = os.environ.get("MISSKEY_TOKEN")
+                api = Misskey(misskey_address)
+                api.token = misskey_token
+                #api.notes_create(text=post_text)
+            except:
+                pass
+            time.sleep(10)
+
     i += 1
