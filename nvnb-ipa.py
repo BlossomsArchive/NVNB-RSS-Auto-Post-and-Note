@@ -58,10 +58,9 @@ for i in range(feed_size):
             api = Misskey(misskey_address)
             api.token = misskey_token
             api.notes_create(text=post_text)
-            time.sleep(10)
         except:
             pass
-
+        time.sleep(10)
     i = i+1
     
 new_up = entries[0]["updated"]
