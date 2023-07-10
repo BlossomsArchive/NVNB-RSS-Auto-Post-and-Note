@@ -28,8 +28,8 @@ jobs:
 
 
         run: |
-          python nvnb-ipa.py
-          cat nvnb-ipa.txt
+          python nvnb-jpcert.py
+          cat nvnb-jpcert.txt
 
       - name: Update File
         run: |
