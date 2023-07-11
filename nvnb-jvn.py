@@ -56,7 +56,7 @@ while (True):
             post_api_url = f'{blog_url}/wp-json/wp/v2/posts'
 
             # 記事投稿リクエスト
-            #response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
+            response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
 
             post_text ="【IPA】("+update_date+" 更新)\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
             print(post_text+"\n")
@@ -67,7 +67,7 @@ while (True):
                 misskey_token = os.environ.get("MISSKEY_TOKEN")
                 api = Misskey(misskey_address)
                 api.token = misskey_token
-                #api.notes_create(text=post_text)
+                api.notes_create(text=post_text)
             except:
                 pass
             time.sleep(10)
@@ -86,7 +86,7 @@ while (True):
             post_api_url = f'{blog_url}/wp-json/wp/v2/posts'
 
             # 記事投稿リクエスト
-            #response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
+            response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
 
             post_text ="【IPA】\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
             print(post_text+"\n")
@@ -97,7 +97,7 @@ while (True):
                 misskey_token = os.environ.get("MISSKEY_TOKEN")
                 api = Misskey(misskey_address)
                 api.token = misskey_token
-                #api.notes_create(text=post_text)
+                api.notes_create(text=post_text)
             except:
                 pass
             time.sleep(10)
