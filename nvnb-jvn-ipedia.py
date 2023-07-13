@@ -33,6 +33,9 @@ g = open(
 g.write(new_up)
 g.close()
 
+print(old_post)
+print(now_entry["date"])
+
 i = 0
 
 while True:
@@ -92,6 +95,8 @@ while True:
                 misskey_token = os.environ.get("MISSKEY_TOKEN")
                 api = Misskey(misskey_address)
                 api.token = misskey_token
+
+print(old_post == now_entry["date"])
                 #api.notes_create(text=post_text)
             except:
                 pass
@@ -124,7 +129,8 @@ while True:
 
             # 記事投稿リクエスト
             #response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
-            time.sleep(5)
+
+print(old_post == now_entry["date"])
 
             try:
                 # SNS投稿API
@@ -133,7 +139,9 @@ while True:
                 misskey_token = os.environ.get("MISSKEY_TOKEN")
                 api = Misskey(misskey_address)
                 api.token = misskey_token
-                #api.notes_create(text=post_text)
+
+print(old_post == now_entry["date"])
+
             except:
                 pass
             time.sleep(10)
