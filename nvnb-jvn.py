@@ -58,7 +58,7 @@ while (True):
             # 記事投稿リクエスト
             response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
 
-            post_text ="【IPA】("+update_date+" 更新)\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
+            post_text ="【JVN】("+update_date+" 更新)\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
             print(post_text+"\n")
             try:
                 #SNS投稿API
@@ -88,7 +88,7 @@ while (True):
             # 記事投稿リクエスト
             response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
 
-            post_text ="【IPA】\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
+            post_text ="【JVN】\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
             print(post_text+"\n")
             try:
                 #SNS投稿API
