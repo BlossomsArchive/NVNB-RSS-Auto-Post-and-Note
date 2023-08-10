@@ -1,6 +1,7 @@
 # coding: utf-8
 import feedparser
 import time
+import requests
 import os
 
 f = open("nvnb-ipa.txt", "r", encoding="utf-8")
