@@ -24,11 +24,11 @@ f.close()
 entries = feedparser.parse('https://jvn.jp/rss/jvn.rdf')['entries']
 
 i = 0
+max_entry = len(entries)
 
 while (True):
+    print(i+"/"+max_entry)
     now_entry = entries[i]
-    max_entry = len(entries)
-    print(max_entry)
     if now_entry['date'] == old_up or i == max_entry:
         new_up = entries[0]['date']
         g = open("nvnb-jvn.txt", "w")
