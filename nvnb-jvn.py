@@ -27,7 +27,8 @@ i = 0
 max_entry = len(entries)
 
 while (True):
-    print(i+"/"+max_entry)
+    print(i)
+    print(max_entry)
     now_entry = entries[i]
     if now_entry['date'] == old_up or i == max_entry:
         new_up = entries[0]['date']
