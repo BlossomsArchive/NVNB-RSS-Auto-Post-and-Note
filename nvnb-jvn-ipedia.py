@@ -41,7 +41,7 @@ while (True):
         title = now_entry['title']
         page_url = now_entry['link']
         if now_entry['date'] != now_entry['issued']:
-            update_date_base = now_entry['date'][:-15]
+            update_date_base = now_entry['date'][:-12]
             update_date_split = update_date_base.split('-')
             update_date = update_date_split[0]+"年"+update_date_split[1]+"月"+update_date_split[2]
             post_text = "[JVN] ("+update_date+" 更新)"+title
