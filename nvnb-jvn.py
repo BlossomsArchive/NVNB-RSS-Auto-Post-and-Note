@@ -30,7 +30,7 @@ while (True):
     print(i)
     print(max_entry)
     now_entry = entries[i]
-    if now_entry['date'] == old_up or i == max_entry:
+    if now_entry['date'] == old_up or i+1 == max_entry:
         new_up = entries[0]['date']
         g = open("nvnb-jvn.txt", "w")
         g.write(new_up)
