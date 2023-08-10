@@ -1,8 +1,9 @@
 # coding: utf-8
 import feedparser
-import time
 import requests
+import time
 import os
+from misskey import Misskey
 
 f = open("nvnb-ipa.txt", "r", encoding="utf-8")
 old_up = f.readline().replace("\n", "")
