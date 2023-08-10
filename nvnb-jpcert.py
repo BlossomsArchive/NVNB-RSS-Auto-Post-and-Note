@@ -29,10 +29,11 @@ g.write(new_up)
 g.close()
 
 i = 0
+max_entry = len(entries)
 
 while (True):
     now_entry = entries[i]
-    if now_entry['date'] == old_up:
+    if now_entry['date'] == old_up or i+1 == max_entry:
         break
 
     else:
