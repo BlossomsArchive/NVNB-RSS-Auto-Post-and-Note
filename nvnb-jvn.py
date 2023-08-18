@@ -70,7 +70,7 @@ while (True):
                 misskey_token = os.environ.get("MISSKEY_TOKEN")
                 api = Misskey(misskey_address)
                 api.token = misskey_token
-                # api.notes_create(text=post_text)
+                api.notes_create(text=post_text)
             except:
                 pass
             time.sleep(10)
@@ -100,7 +100,7 @@ while (True):
                 misskey_token = os.environ.get("MISSKEY_TOKEN")
                 api = Misskey(misskey_address)
                 api.token = misskey_token
-                # api.notes_create(text=post_text)
+                api.notes_create(text=post_text)
             except:
                 pass
             time.sleep(10)
