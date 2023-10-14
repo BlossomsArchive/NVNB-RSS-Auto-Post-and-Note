@@ -67,6 +67,6 @@ while (True):
             api.notes_create(text=post_text)
         except:
             pass
-        time.sleep(10)
+        time.sleep(30)
         
     i += 1
