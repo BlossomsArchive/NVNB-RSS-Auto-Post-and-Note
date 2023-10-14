@@ -78,7 +78,7 @@ while (True):
                 api.notes_create(text=post_text)
             except:
                 pass
-            time.sleep(10)
+            time.sleep(30)
             
         else:
             # 送信する記事データ
@@ -113,5 +113,5 @@ while (True):
                 api.notes_create(text=post_text)
             except:
                 pass
-            time.sleep(10)
+            time.sleep(30)
     i += 1
