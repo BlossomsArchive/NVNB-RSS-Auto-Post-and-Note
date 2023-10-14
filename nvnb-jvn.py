@@ -59,7 +59,7 @@ while (True):
             post_api_url = f'{blog_url}/wp-json/wp/v2/posts'
 
             # 記事投稿リクエスト
-            # response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
+            response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
 
             post_text ="【JVN】("+update_date+" 更新)\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
             print(post_text+"\n")
@@ -73,7 +73,7 @@ while (True):
                 api.notes_create(text=post_text)
             except:
                 pass
-            time.sleep(10)
+            time.sleep(30)
             
         else:
             # 送信する記事データ
@@ -89,7 +89,7 @@ while (True):
             post_api_url = f'{blog_url}/wp-json/wp/v2/posts'
 
             # 記事投稿リクエスト
-            # response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
+            response = requests.post(post_api_url, json=post_data, auth=(api_user, api_password))
 
             post_text ="【JVN】\n" +title + "\n" + page_url + "\n\nその他の情報はこちら\nhttps://nvnb.blossomsarchive.com/"
             print(post_text+"\n")
@@ -103,5 +103,5 @@ while (True):
                 api.notes_create(text=post_text)
             except:
                 pass
-            time.sleep(10)
+            time.sleep(30)
     i += 1
