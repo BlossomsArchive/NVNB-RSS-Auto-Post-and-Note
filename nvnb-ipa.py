@@ -62,7 +62,7 @@ for i in range(feed_size):
             api.notes_create(text=post_text)
         except:
             pass
-        time.sleep(10)
+        time.sleep(30)
     i = i+1
     
 new_up = entries[0]["updated"]
