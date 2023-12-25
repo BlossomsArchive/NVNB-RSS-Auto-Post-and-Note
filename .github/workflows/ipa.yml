@@ -18,6 +18,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install Misskey.py
           pip install feedparser
+          pip install atproto
 
       - name: Create Note&WP Content
         env:
@@ -25,6 +26,8 @@ jobs:
           MISSKEY_TOKEN: ${{ secrets.MISSKEY_TOKEN }}
           WORDPRESS_USER: ${{ secrets.WORDPRESS_USER }}
           WORDPRESS_API_PASSWORD: ${{ secrets.WORDPRESS_API_PASSWORD }}
+          BLUESKY_MAIL_ADDRESS: ${{ secrets.BLUESKY_MAIL_ADDRESS }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
 
 
         run: |
