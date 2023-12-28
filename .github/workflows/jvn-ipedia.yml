@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 * * * *'
+concurrency: execution limit ipedia
 jobs:
   Send_Note:
     runs-on: ubuntu-latest
