@@ -2,8 +2,8 @@ name: JPCERT/CC only
 
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '30 * * * *'
+  schedule:
+    - cron: '30 * * * *'
 jobs:
   Send_Note:
     runs-on: ubuntu-latest
