@@ -71,8 +71,7 @@ for i in range(feed_size):
             # Misskey
             misskey_address = os.environ.get("MISSKEY_SERVER_ADDRESS")
             misskey_token = os.environ.get("MISSKEY_TOKEN")
-            api = Misskey(misskey_address)
-            api.token = misskey_token
+            api = Misskey(misskey_address, misskey_token)
             api.notes_create(text=post_text)
         except:
             pass
