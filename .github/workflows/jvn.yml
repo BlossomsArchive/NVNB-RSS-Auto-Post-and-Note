@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '10 * * * *'
+concurrency: execution limit jvn
 jobs:
   Send_Note:
     runs-on: ubuntu-latest
