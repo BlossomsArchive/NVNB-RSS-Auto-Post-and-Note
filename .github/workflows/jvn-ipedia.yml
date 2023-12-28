@@ -2,8 +2,8 @@ name: JVN iPedia only
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 * * * *'
+  # schedule:
+  #   - cron: '0 * * * *'
 jobs:
   Send_Note:
     runs-on: ubuntu-latest
