@@ -84,7 +84,12 @@ for i in range(feed_size):
                     str(os.environ.get("BLUESKY_MAIL_ADDRESS")),
                     str(os.environ.get("BLUESKY_PASSWORD")),
                 )
-                bluesky.send_post(post_text)
+                embed_external = models.AppBskyEmbedExternal.Main(
+                        external=models.AppBskyEmbedExternal.External(
+                            title=title, description="title", uri=page_url
+                        )
+                    )
+                bluesky.send_post(post_text,embed=embed_external)
             except:
                 pass
         time.sleep(30)
