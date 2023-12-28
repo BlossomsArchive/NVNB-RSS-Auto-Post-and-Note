@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '30 * * * *'
-concurrency: execution limit
+concurrency: execution limit jpcert
 jobs:
   Send_Note:
     runs-on: ubuntu-latest
